@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alertas de Preço - Carteira Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: #fff; }
+    th, td { border: 1px solid #ccc; padding: 0.75rem; text-align: center; }
+    th { background-color: #f2f2f2; }
+    .ok { background-color: #d4edda; }
+    .alerta { background-color: #fff3cd; }
+    .perigo { background-color: #f8d7da; }
+  </style>
+</head>
+<body>
+  <h1>📈 Painel de Alertas de Preço</h1>
+  <p>Compare o preço atual de cada ativo com a meta de entrada. Quando o preço estiver igual ou abaixo da meta, o ativo será destacado em verde (compra recomendada).</p>
+
+  <table id="alerta-table">
+    <thead>
+      <tr>
+        <th>Ativo</th>
+        <th>Categoria</th>
+        <th>Preço Atual (US$)</th>
+        <th>Meta de Entrada (US$)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    const ativos = [
+      { nome: "AMZN", categoria: "Alta", preco: 212.47 },
+      { nome: "PLTR", categoria: "Alta", preco: 135.66 },
+      { nome: "CRWD", categoria: "Alta", preco: 486.00 },
+      { nome: "AVGO", categoria: "Alta", preco: 254.61 },
+      { nome: "SNOW", categoria: "Alta", preco: 212.53 },
+      { nome: "NOW", categoria: "Alta", preco: 1013.92 },
+      { nome: "PANW", categoria: "Média", preco: 199.15 },
+      { nome: "AMD", categoria: "Média", preco: 120.51 },
+      { nome: "CRM", categoria: "Média", preco: 266.81 },
+      { nome: "ILMN", categoria: "Média", preco: 87.96 },
+      { nome: "IONQ", categoria: "Especulativa", preco: 38.78 },
+      { nome: "QBTS", categoria: "Especulativa", preco: 15.98 },
+      { nome: "QQQ", categoria: "ETF", preco: 533.31 },
+      { nome: "ARKK", categoria: "ETF", preco: 62.45 },
+      { nome: "VGT", categoria: "ETF", preco: 633.90 }
+    ];
+
+    const tbody = document.querySelector("#alerta-table tbody");
+    ativos.forEach(({ nome, categoria, preco }) => {
+      const meta = +(preco * 0.95).toFixed(2);
+      const status = preco <= meta ? '🔔 Comprar' : '⏳ Aguardar';
+      const classe = preco <= meta ? 'ok' : preco <= meta * 1.05 ? 'alerta' : 'perigo';
+
+      const row = `<tr class="${classe}">
+        <td>${nome}</td>
+        <td>${categoria}</td>
+        <td>$${preco.toFixed(2)}</td>
+        <td>$${meta.toFixed(2)}</td>
+        <td>${status}</td>
+      </tr>`;
+      tbody.innerHTML += row;
+    });
+  </script>
+</body>
+</html>
