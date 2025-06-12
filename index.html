@@ -1,44 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Financeiro - v2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Dinâmico - Versão 4.0</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; }
-    header { background: #222; color: white; padding: 1rem; text-align: center; }
-    main { padding: 2rem; }
-    .panel { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-    img { max-width: 100%; height: auto; border-radius: 10px; }
+    body { font-family: sans-serif; margin: 0; background: #f2f2f2; }
+    header { background: #111; color: white; padding: 1rem; text-align: center; }
+    .container { padding: 2rem; max-width: 1000px; margin: auto; }
+    .panel { background: white; padding: 1.5rem; margin-bottom: 2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    canvas { max-width: 100%; }
   </style>
 </head>
 <body>
   <header>
-    <h1>📊 Dashboard da Liberdade Financeira – Versão 2.0</h1>
+    <h1>📊 Dashboard Dinâmico da Liberdade Financeira – v4.0</h1>
   </header>
-  <main>
+
+  <div class="container">
     <div class="panel">
       <h2>Distribuição Atual do Patrimônio</h2>
-      <img src="grafico_patrimonio_pizza.png" alt="Distribuição Patrimonial">
-      <p><strong>Total:</strong> R$ 897.887,45</p>
+      <canvas id="patrimonioChart"></canvas>
+    </div>
+
+    <div class="panel">
+      <h2>Evolução do Patrimônio</h2>
+      <canvas id="evolucaoChart"></canvas>
     </div>
 
     <div class="panel">
       <h2>Metas Financeiras</h2>
       <ul>
-        <li>🏁 R$ 10.000/mês para você</li>
+        <li>💰 R$ 10.000/mês para você</li>
         <li>🏠 R$ 2.000/mês para sua mãe</li>
-        <li>💰 Investimento dedicado para mãe: R$ 150.000</li>
+        <li>📦 Investimento dedicado: R$ 150.000</li>
         <li>📈 Aporte mensal atual: R$ 3.000</li>
       </ul>
     </div>
+  </div>
 
-    <div class="panel">
-      <h2>Próximas Etapas</h2>
-      <p>✔️ Gráficos de evolução<br>✔️ Tabelas detalhadas por classe<br>✔️ Simulador de independência financeira<br>✔️ Exportação em PDF</p>
-    </div>
-  </main>
+  <script>
+    // Gráfico de barras (alocação atual)
+    const ctx1 = document.getElementById('patrimonioChart');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['Stocks', 'FIIs', 'REITs', 'Renda Fixa', 'Reserva de Valor', 'Outros'],
+        datasets: [{
+          label: 'Distribuição Patrimonial (R$)',
+          data: [91055.48, 101199.21, 56973.20, 39824.39, 305119.54, 302337.93],
+          backgroundColor: [
+            '#4CAF50','#2196F3','#FFC107','#FF5722','#9C27B0','#607D8B'
+          ],
+          borderRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Distribuição Atual do Patrimônio (R$ 897.887,45)' }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return 'R$ ' + value.toLocaleString('pt-BR');
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Gráfico de linha (evolução do patrimônio ao longo dos meses)
+    const ctx2 = document.getElementById('evolucaoChart');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [{
+          label: 'Evolução do Patrimônio (R$)',
+          data: [750000, 780000, 800000, 840000, 870000, 897887],
+          fill: true,
+          borderColor: '#2196F3',
+          backgroundColor: 'rgba(33, 150, 243, 0.1)',
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' },
+          title: { display: true, text: 'Crescimento Patrimonial (últimos 6 meses)' }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            ticks: {
+              callback: function(value) {
+                return 'R$ ' + value.toLocaleString('pt-BR');
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
