@@ -1,79 +1,106 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Alertas de Preço - Carteira Tech</title>
+  <title>Dashboard Financeiro - Liberdade</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 2rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: #fff; }
-    th, td { border: 1px solid #ccc; padding: 0.75rem; text-align: center; }
-    th { background-color: #f2f2f2; }
-    .ok { background-color: #d4edda; }
-    .alerta { background-color: #fff3cd; }
-    .perigo { background-color: #f8d7da; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; }
+    header { background: #222; color: white; padding: 1rem; text-align: center; }
+    nav { background: #333; display: flex; justify-content: center; }
+    nav a { color: white; padding: 1rem; text-decoration: none; transition: 0.3s; }
+    nav a:hover { background: #555; }
+    section { display: none; padding: 2rem; }
+    section.active { display: block; }
+    .panel { background: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
   </style>
 </head>
 <body>
-<script>
-  const senha = prompt("Digite a senha para acessar:");
-  if (senha !== "puravida31!") {
-    document.body.innerHTML = "<h2>Acesso negado.</h2>";
-  }
-</script>
+  <header>
+    <h1>📊 Dashboard da Liberdade Financeira</h1>
+  </header>
+  <nav>
+    <a href="#" onclick="showTab('painel')">Painel</a>
+    <a href="#" onclick="showTab('acoes')">Ações</a>
+    <a href="#" onclick="showTab('fiis')">FIIs</a>
+    <a href="#" onclick="showTab('reits')">REITs</a>
+    <a href="#" onclick="showTab('renda_fixa')">Renda Fixa</a>
+    <a href="#" onclick="showTab('outros')">Outros</a>
+    <a href="#" onclick="showTab('metas')">Metas</a>
+  </nav>
 
-  <h1>📈 Painel de Alertas de Preço</h1>
-  <p>Compare o preço atual de cada ativo com a meta de entrada. Quando o preço estiver igual ou abaixo da meta, o ativo será destacado em verde (compra recomendada).</p>
+  <main>
+    <section id="painel" class="active">
+      <div class="panel">
+        <h2>Visão Geral do Patrimônio</h2>
+        <div class="grid">
+          <div><strong>Total:</strong> R$ 897.887,45</div>
+          <div><strong>Renda Fixa:</strong> R$ 39.824,39</div>
+          <div><strong>Stocks:</strong> R$ 91.055,48</div>
+          <div><strong>FIIs:</strong> R$ 101.199,21</div>
+          <div><strong>REITs:</strong> R$ 56.973,20</div>
+          <div><strong>Reserva de Valor:</strong> R$ 305.119,54</div>
+          <div><strong>Outros:</strong> R$ 302.337,93</div>
+        </div>
+      </div>
+    </section>
 
-  <table id="alerta-table">
-    <thead>
-      <tr>
-        <th>Ativo</th>
-        <th>Categoria</th>
-        <th>Preço Atual (US$)</th>
-        <th>Meta de Entrada (US$)</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+    <section id="acoes">
+      <div class="panel">
+        <h2>Detalhamento de Ações</h2>
+        <p>[⚠️ Em construção – será incluído: retorno 2, 5, 10 anos, metas, alertas, etc.]</p>
+      </div>
+    </section>
+
+    <section id="fiis">
+      <div class="panel">
+        <h2>Fundos Imobiliários</h2>
+        <p>[⚠️ Em construção – tabela detalhada de FIIs com comentários]</p>
+      </div>
+    </section>
+
+    <section id="reits">
+      <div class="panel">
+        <h2>REITs</h2>
+        <p>[⚠️ Em construção – dados de mercado e dividendos]</p>
+      </div>
+    </section>
+
+    <section id="renda_fixa">
+      <div class="panel">
+        <h2>Renda Fixa</h2>
+        <p>[⚠️ Em construção – vencimentos, rentabilidade, liquidez]</p>
+      </div>
+    </section>
+
+    <section id="outros">
+      <div class="panel">
+        <h2>Outros Investimentos</h2>
+        <p>[⚠️ Em construção – incluir criptos, startups, etc.]</p>
+      </div>
+    </section>
+
+    <section id="metas">
+      <div class="panel">
+        <h2>Metas Financeiras</h2>
+        <ul>
+          <li>🔹 R$ 10.000/mês para você</li>
+          <li>🔹 R$ 2.000/mês para sua mãe</li>
+          <li>🔹 Investimento dedicado para mãe: R$ 150.000</li>
+          <li>🔹 Aporte mensal atual: R$ 3.000</li>
+        </ul>
+        <p>[⚠️ Em breve: projeções gráficas e estimativas por classe de ativo]</p>
+      </div>
+    </section>
+  </main>
 
   <script>
-    const ativos = [
-      { nome: "AMZN", categoria: "Alta", preco: 212.47 },
-      { nome: "PLTR", categoria: "Alta", preco: 135.66 },
-      { nome: "CRWD", categoria: "Alta", preco: 486.00 },
-      { nome: "AVGO", categoria: "Alta", preco: 254.61 },
-      { nome: "SNOW", categoria: "Alta", preco: 212.53 },
-      { nome: "NOW", categoria: "Alta", preco: 1013.92 },
-      { nome: "PANW", categoria: "Média", preco: 199.15 },
-      { nome: "AMD", categoria: "Média", preco: 120.51 },
-      { nome: "CRM", categoria: "Média", preco: 266.81 },
-      { nome: "ILMN", categoria: "Média", preco: 87.96 },
-      { nome: "IONQ", categoria: "Especulativa", preco: 38.78 },
-      { nome: "QBTS", categoria: "Especulativa", preco: 15.98 },
-      { nome: "QQQ", categoria: "ETF", preco: 533.31 },
-      { nome: "ARKK", categoria: "ETF", preco: 62.45 },
-      { nome: "VGT", categoria: "ETF", preco: 633.90 }
-    ];
-
-    const tbody = document.querySelector("#alerta-table tbody");
-    ativos.forEach(({ nome, categoria, preco }) => {
-      const meta = +(preco * 0.95).toFixed(2);
-      const status = preco <= meta ? '🔔 Comprar' : '⏳ Aguardar';
-      const classe = preco <= meta ? 'ok' : preco <= meta * 1.05 ? 'alerta' : 'perigo';
-
-      const row = `<tr class="${classe}">
-        <td>${nome}</td>
-        <td>${categoria}</td>
-        <td>$${preco.toFixed(2)}</td>
-        <td>$${meta.toFixed(2)}</td>
-        <td>${status}</td>
-      </tr>`;
-      tbody.innerHTML += row;
-    });
+    function showTab(tabId) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
   </script>
 </body>
 </html>
