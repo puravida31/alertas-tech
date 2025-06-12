@@ -3,104 +3,42 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Financeiro - Liberdade</title>
+  <title>Dashboard Financeiro - v2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; }
     header { background: #222; color: white; padding: 1rem; text-align: center; }
-    nav { background: #333; display: flex; justify-content: center; }
-    nav a { color: white; padding: 1rem; text-decoration: none; transition: 0.3s; }
-    nav a:hover { background: #555; }
-    section { display: none; padding: 2rem; }
-    section.active { display: block; }
-    .panel { background: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    main { padding: 2rem; }
+    .panel { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 2rem; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    img { max-width: 100%; height: auto; border-radius: 10px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>📊 Dashboard da Liberdade Financeira</h1>
+    <h1>📊 Dashboard da Liberdade Financeira – Versão 2.0</h1>
   </header>
-  <nav>
-    <a href="#" onclick="showTab('painel')">Painel</a>
-    <a href="#" onclick="showTab('acoes')">Ações</a>
-    <a href="#" onclick="showTab('fiis')">FIIs</a>
-    <a href="#" onclick="showTab('reits')">REITs</a>
-    <a href="#" onclick="showTab('renda_fixa')">Renda Fixa</a>
-    <a href="#" onclick="showTab('outros')">Outros</a>
-    <a href="#" onclick="showTab('metas')">Metas</a>
-  </nav>
-
   <main>
-    <section id="painel" class="active">
-      <div class="panel">
-        <h2>Visão Geral do Patrimônio</h2>
-        <div class="grid">
-          <div><strong>Total:</strong> R$ 897.887,45</div>
-          <div><strong>Renda Fixa:</strong> R$ 39.824,39</div>
-          <div><strong>Stocks:</strong> R$ 91.055,48</div>
-          <div><strong>FIIs:</strong> R$ 101.199,21</div>
-          <div><strong>REITs:</strong> R$ 56.973,20</div>
-          <div><strong>Reserva de Valor:</strong> R$ 305.119,54</div>
-          <div><strong>Outros:</strong> R$ 302.337,93</div>
-        </div>
-      </div>
-    </section>
+    <div class="panel">
+      <h2>Distribuição Atual do Patrimônio</h2>
+      <img src="grafico_patrimonio_pizza.png" alt="Distribuição Patrimonial">
+      <p><strong>Total:</strong> R$ 897.887,45</p>
+    </div>
 
-    <section id="acoes">
-      <div class="panel">
-        <h2>Detalhamento de Ações</h2>
-        <p>[⚠️ Em construção – será incluído: retorno 2, 5, 10 anos, metas, alertas, etc.]</p>
-      </div>
-    </section>
+    <div class="panel">
+      <h2>Metas Financeiras</h2>
+      <ul>
+        <li>🏁 R$ 10.000/mês para você</li>
+        <li>🏠 R$ 2.000/mês para sua mãe</li>
+        <li>💰 Investimento dedicado para mãe: R$ 150.000</li>
+        <li>📈 Aporte mensal atual: R$ 3.000</li>
+      </ul>
+    </div>
 
-    <section id="fiis">
-      <div class="panel">
-        <h2>Fundos Imobiliários</h2>
-        <p>[⚠️ Em construção – tabela detalhada de FIIs com comentários]</p>
-      </div>
-    </section>
-
-    <section id="reits">
-      <div class="panel">
-        <h2>REITs</h2>
-        <p>[⚠️ Em construção – dados de mercado e dividendos]</p>
-      </div>
-    </section>
-
-    <section id="renda_fixa">
-      <div class="panel">
-        <h2>Renda Fixa</h2>
-        <p>[⚠️ Em construção – vencimentos, rentabilidade, liquidez]</p>
-      </div>
-    </section>
-
-    <section id="outros">
-      <div class="panel">
-        <h2>Outros Investimentos</h2>
-        <p>[⚠️ Em construção – incluir criptos, startups, etc.]</p>
-      </div>
-    </section>
-
-    <section id="metas">
-      <div class="panel">
-        <h2>Metas Financeiras</h2>
-        <ul>
-          <li>🔹 R$ 10.000/mês para você</li>
-          <li>🔹 R$ 2.000/mês para sua mãe</li>
-          <li>🔹 Investimento dedicado para mãe: R$ 150.000</li>
-          <li>🔹 Aporte mensal atual: R$ 3.000</li>
-        </ul>
-        <p>[⚠️ Em breve: projeções gráficas e estimativas por classe de ativo]</p>
-      </div>
-    </section>
+    <div class="panel">
+      <h2>Próximas Etapas</h2>
+      <p>✔️ Gráficos de evolução<br>✔️ Tabelas detalhadas por classe<br>✔️ Simulador de independência financeira<br>✔️ Exportação em PDF</p>
+    </div>
   </main>
-
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-    }
-  </script>
 </body>
 </html>
